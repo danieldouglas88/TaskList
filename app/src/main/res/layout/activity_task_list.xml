@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.daniel.tasklist.TaskListActivity">
 
+    <TextView
+        android:id="@+id/taskListTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="39dp"
+        android:text="Display Tasklist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
