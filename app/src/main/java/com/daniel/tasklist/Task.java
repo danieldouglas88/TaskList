@@ -2,8 +2,8 @@ package com.daniel.tasklist;
 
 public class Task {
 
-    private long taskid;
-    private long listid;
+    private long taskId;
+    private long listId;
     private String name;
     private String notes;
     private String completedDate;
@@ -12,43 +12,46 @@ public class Task {
     public static final String TRUE = "1";
     public static final String FALSE = "0";
 
-    public Task(){
+    public Task() {
         name = "";
         notes = "";
         completedDate = FALSE;
         hidden = FALSE;
     }
 
-    public Task(int listid, String name, String notes, String completedDate, String hidden){
-        this.listid = listid;
+    public Task(int listId, String name, String notes,
+                String completed, String hidden) {
+        this.listId = listId;
         this.name = name;
         this.notes = notes;
-        this.completedDate = completedDate;
-    }
-
-    public Task(long taskid, long listid, String name, String notes, String completedDate, String hidden) {
-        this.taskid = taskid;
-        this.listid = listid;
-        this.name = name;
-        this.notes = notes;
-        this.completedDate = completedDate;
+        this.completedDate = completed;
         this.hidden = hidden;
     }
 
-    public long getTaskid() {
-        return taskid;
+    public Task(int taskId, int listId, String name, String notes,
+                String completed, String hidden) {
+        this.taskId = taskId;
+        this.listId = listId;
+        this.name = name;
+        this.notes = notes;
+        this.completedDate = completed;
+        this.hidden = hidden;
     }
 
-    public void setTaskid(long taskid) {
-        this.taskid = taskid;
+    public long getId() {
+        return taskId;
     }
 
-    public long getListid() {
-        return listid;
+    public void setId(long taskId) {
+        this.taskId = taskId;
     }
 
-    public void setListid(long listid) {
-        this.listid = listid;
+    public long getListId() {
+        return listId;
+    }
+
+    public void setListId(long listId) {
+        this.listId = listId;
     }
 
     public String getName() {
@@ -71,27 +74,23 @@ public class Task {
         return completedDate;
     }
 
-    public void setCompletedDate(String completedDate) {
-        this.completedDate = completedDate;
+    public long getCompletedDateMillis() {
+        return Long.parseLong(completedDate);
     }
 
-    public String getHidden() {
+    public void setCompletedDate(String date_completed) {
+        this.completedDate = date_completed;
+    }
+
+    public void setCompletedDate(long millis) {
+        this.completedDate = Long.toString(millis);
+    }
+
+    public String getHidden(){
         return hidden;
     }
 
     public void setHidden(String hidden) {
         this.hidden = hidden;
     }
-
-    public long getCompletedDateMills(){
-        return Long.parseLong(completedDate);
-    }
-
-    public void setCompletedDateMills(long mills){
-    this.completedDate = Long.toString(mills);
-    }
-
-
-
 }
-

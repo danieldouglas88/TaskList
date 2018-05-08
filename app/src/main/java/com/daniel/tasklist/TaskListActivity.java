@@ -1,10 +1,12 @@
 package com.daniel.tasklist;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
+
+        import android.app.Activity;
+        import android.os.Bundle;
+        import android.widget.TextView;
 
 public class TaskListActivity extends Activity {
 
@@ -13,44 +15,51 @@ public class TaskListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
 
-        //get DB object and StringBuilder
+        // get db and StringBuilder objects
         TaskListDB db = new TaskListDB(this);
         StringBuilder sb = new StringBuilder();
 
-        //insert a task
-        Task task = new Task(1, "Make dentist appt", "", "0", "0");
+        // insert a task
+        Task task = new Task(1, "Make dentist appointment", "", "0", "0");
         long insertId = db.insertTask(task);
-        if(insertId>0){
-            sb.append("Row inserted. Insert id: " + insertId + "\n");
+        if (insertId > 0) {
+            sb.append("Row inserted! Insert Id: " + insertId + "\n");
         }
 
-        Task task2 = new Task(1, "Take car for oil change", "", "0", "0");
-        long insertId2 = db.insertTask(task);
-        if(insertId2>0){
-            sb.append("Row inserted. Insert id: " + insertId + "\n");
+        // insert a second task
+        Task task2 = new Task(1, "Take car in for oil change", "", "0", "0");
+        long insertId2 = db.insertTask(task2);
+        if (insertId2 > 0) {
+            sb.append("Row inserted! Insert Id: " + insertId2 + "\n");
         }
 
-        //update task
-        task.setTaskid((int) insertId);
-        task.setName("UPDATE TEST");
+        // update a task
+        task.setId((int) insertId);
+        task.setName("Update test");
         int updateCount = db.updateTask(task);
-        if(updateCount == 1){
-            sb.append("Task updated. Update count: " + updateCount + "\n");
+        if (updateCount == 1) {
+            sb.append("Task updated! Update count: " + updateCount + "\n");
         }
 
-        //delete task
+        // delete a task
+        int deleteCount = db.deleteTask(insertId);
+        if (deleteCount == 1) {
+            sb.append("Task deleted! Delete count: " + deleteCount + "\n\n");
+        }
 
-        //delete old tasks
+        // delete old tasks (this may vary from system to system)
+        db.deleteTask(5);
+        db.deleteTask(7);
 
-        //display all tasks by id and name
+        // display all tasks (id + name)
         ArrayList<Task> tasks = db.getTasks("Personal");
-        for (Task t : tasks){
-            sb.append(t.getTaskid() + " | " + t.getName() + "\n");
+        for (Task t : tasks) {
+            sb.append(t.getId() + "|" + t.getName() + "\n");
         }
 
-        //display string on the UI
-        TextView taskListTextView = (TextView) findViewById(R.id.taskListTextView);
+        // display string on UI
+        TextView taskListTextView = (TextView)
+                findViewById (R.id.taskListTextView);
         taskListTextView.setText(sb.toString());
-
     }
 }
